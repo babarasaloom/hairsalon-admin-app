@@ -7,7 +7,7 @@ import { useState } from "react";
 import clsx from "clsx";
 
 const navItems = [
-  { name: "Dashboard", href: "/dashboard", icon: Home },
+  { name: "Dashboard", href: "/", icon: Home },
   { name: "Bookings", href: "/dashboard/bookings", icon: Calendar },
   { name: "Clients", href: "/dashboard/clients", icon: Users },
   { name: "Menu", href: "/dashboard/menu", icon: MenuIcon },
