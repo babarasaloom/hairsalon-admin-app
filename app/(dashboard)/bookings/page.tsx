@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Calendar, Clock, Scissors, Plus } from "lucide-react";
 import clsx from "clsx";
 import { useRouter } from "next/navigation";
-import BookingModal from "@/components/dashboard/bookings/modal";
+import BookingModal from "@/components/(dashboard)/bookings/modal";
 
 interface Booking {
   id: number;
@@ -112,7 +112,7 @@ export default function BookingsPage() {
             <div
               key={b.id}
               className="bg-white border border-gray-200 rounded-2xl shadow-sm p-4 flex flex-col justify-between hover:shadow-md transition-shadow duration-200 cursor-pointer"
-              onClick={() => router.push(`/dashboard/bookings/${b.id}`)}
+              onClick={() => router.push(`/bookings/${b.id}`)}
             >
               {/* Client + Service */}
               <div className="flex-1">

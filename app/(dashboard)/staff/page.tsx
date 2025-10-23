@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { ChevronRight, Plus, Scissors, Users } from "lucide-react";
-import StaffList from "@/components/dashboard/staffs/list";
+import StaffList from "@/components/(dashboard)/staffs/list";
 import Link from "next/link";
 
 const mockStaff = [

@@ -101,7 +101,7 @@ export default function ClientsPage() {
           filteredClients.map((c) => (
             <div
               key={c.id}
-              onClick={() => router.push(`/dashboard/clients/${c.id}`)}
+              onClick={() => router.push(`/clients/${c.id}`)}
               className="bg-white border border-gray-200 rounded-2xl shadow-sm p-4 hover:shadow-md hover:cursor-pointer transition-all duration-200"
             >
               <div className="flex items-center gap-3 mb-2">

@@ -75,7 +75,7 @@ export default function BookingDetailsPage() {
       {/* Header */}
       <header className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-1">
-          <Link href="/dashboard/bookings">
+          <Link href="/bookings">
             <ArrowLeft className="w-5 h-5" />
           </Link>
 

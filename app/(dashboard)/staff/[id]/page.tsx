@@ -2,13 +2,13 @@
 
 import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
-import StaffHeader from "@/components/dashboard/staffs/[id]/header";
-import StaffProfileCard from "@/components/dashboard/staffs/[id]/profile-card";
-import StaffWorkingHours from "@/components/dashboard/staffs/[id]/working-hours";
-import StaffServices from "@/components/dashboard/staffs/[id]/services";
-import StaffScheduleSection from "@/components/dashboard/staffs/[id]/schedules";
-import StaffEditModal from "@/components//dashboard/staffs/[id]/edit-modal";
-import StaffScheduleModal from "@/components//dashboard/staffs/[id]/schedule-modal";
+import StaffHeader from "@/components/(dashboard)/staffs/[id]/header";
+import StaffProfileCard from "@/components/(dashboard)/staffs/[id]/profile-card";
+import StaffWorkingHours from "@/components/(dashboard)/staffs/[id]/working-hours";
+import StaffServices from "@/components/(dashboard)/staffs/[id]/services";
+import StaffScheduleSection from "@/components/(dashboard)/staffs/[id]/schedules";
+import StaffEditModal from "@/components/(dashboard)/staffs/[id]/edit-modal";
+import StaffScheduleModal from "@/components/(dashboard)/staffs/[id]/schedule-modal";
 
 interface Staff {
   id: number;

@@ -8,9 +8,9 @@ import clsx from "clsx";
 
 const navItems = [
   { name: "Dashboard", href: "/", icon: Home },
-  { name: "Bookings", href: "/dashboard/bookings", icon: Calendar },
-  { name: "Clients", href: "/dashboard/clients", icon: Users },
-  { name: "Menu", href: "/dashboard/menu", icon: MenuIcon },
+  { name: "Bookings", href: "/bookings", icon: Calendar },
+  { name: "Clients", href: "/clients", icon: Users },
+  { name: "Menu", href: "/menu", icon: MenuIcon },
 ];
 
 export default function DashboardLayout({

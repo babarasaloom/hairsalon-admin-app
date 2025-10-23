@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function StaffCard({ member }: any) {
   return (
     <Link
-      href={`/dashboard/staff/${member.id}`}
+      href={`/staff/${member.id}`}
       className="block cursor-pointer bg-white border border-gray-200 rounded-2xl shadow-sm p-4 hover:shadow-md transition"
     >
       <div className="flex items-center gap-3 mb-2">

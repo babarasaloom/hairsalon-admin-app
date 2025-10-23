@@ -144,7 +144,7 @@ export default function ServicesPage() {
             Add Service
           </button>
           <Link
-            href="/dashboard/categories"
+            href="/categories"
             className="flex items-center justify-center gap-2 text-center px-3 w-full md:w-fit block py-1.5 border border-gray-300 rounded-lg text-gray-700 text-sm hover:bg-gray-50"
           >
             Categories

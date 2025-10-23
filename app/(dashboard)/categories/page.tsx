@@ -70,7 +70,7 @@ export default function CategoriesPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 gap-2">
         <div className="flex items-center gap-1">
-          <Link href="/dashboard/services">
+          <Link href="/services">
             <ArrowLeft className="w-5 h-5" />
           </Link>
 

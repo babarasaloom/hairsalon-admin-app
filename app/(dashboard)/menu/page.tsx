@@ -15,22 +15,22 @@ const menuItems = [
   {
     name: "Services",
     icon: Scissors,
-    href: "/dashboard/services",
+    href: "/services",
   },
   {
     name: "Staff",
     icon: Users,
-    href: "/dashboard/staff",
+    href: "/staff",
   },
   {
     name: "Profile",
     icon: User,
-    href: "/dashboard/profile",
+    href: "/profile",
   },
   {
     name: "Settings",
     icon: Settings,
-    href: "/dashboard/settings",
+    href: "/settings",
   },
   {
     name: "Logout",
