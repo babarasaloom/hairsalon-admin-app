@@ -10,16 +10,19 @@ export async function getServices(): Promise<{
 }> {
   try {
     await connectDB();
-    // const services = await Service.find().populate("categoryId", "name").lean();
+
     const services = Service.find()
       .populate("categoryId", "name")
       .sort({ createdAt: -1 })
       .lean();
+
     const data = (await services).map((s: any) => ({
       id: s._id.toString(),
       name: s.name,
       imageUrl: s.imageUrl,
       description: s.description,
+      categoryId: s.categoryId._id.toString(),
+      category: s.categoryId.name,
       duration: s.duration,
       isActive: s.isActive,
     }));
