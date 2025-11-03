@@ -11,10 +11,7 @@ export async function getStaff(): Promise<{
   try {
     await connectDB();
 
-    const staffList = Staff.find()
-      .populate("services", "name") // populate related services
-      .sort({ createdAt: -1 })
-      .lean();
+    const staffList = Staff.find().sort({ createdAt: -1 }).lean();
 
     const data = (await staffList).map((s: any) => ({
       id: s._id.toString(),
@@ -24,10 +21,6 @@ export async function getStaff(): Promise<{
       role: s.role,
       description: s.description,
       avatarUrl: s.avatarUrl,
-      services: s.services.map((srv: any) => ({
-        id: srv._id.toString(),
-        name: srv.name,
-      })),
       isActive: s.isActive,
       workingHours: s.workingHours || [],
       createdAt: s.createdAt,

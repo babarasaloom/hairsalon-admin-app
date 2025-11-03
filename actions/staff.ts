@@ -27,7 +27,7 @@ export async function createStaffAction(
   else await createStaff(data as Partial<IStaff>);
 
   revalidatePath("/staff");
-  redirect("/dashboard/staff");
+  redirect("/staff");
 }
 
 export async function deleteStaffAction(staffId: string, avatarUrl: string) {
