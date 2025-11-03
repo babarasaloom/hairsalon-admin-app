@@ -10,6 +10,7 @@ export interface IStaff {
   email?: string;
   contactNumber?: string;
   role: "stylist" | "receptionist" | "manager";
+  bio?: string;
   avatarUrl?: string;
   services: string[];
   isActive: boolean;

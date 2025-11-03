@@ -13,6 +13,7 @@ const StaffSchema = new Schema<StaffDocument>(
       enum: ["stylist", "receptionist", "manager", "admin"],
       required: true,
     },
+    bio: { type: String, trim: true },
     avatarUrl: { type: String },
     services: [{ type: Schema.Types.ObjectId, ref: "Service" }],
     workingHours: { type: String, default: "09:00 AM – 5:00 PM" },
