@@ -1,4 +1,5 @@
 import { ServiceClientPage } from "@/components/(dashboard)/services/client";
+import { ICategory } from "@/definitions/category";
 import { getCategories } from "@/services/category";
 import { getServices } from "@/services/service";
 
@@ -11,7 +12,10 @@ export default async function ServicesPage() {
   return (
     <ServiceClientPage
       initialServices={result.data || []}
-      categories={res.data || []}
+      categories={
+        res.data?.map((cat: ICategory) => ({ id: cat.id!, name: cat.name })) ||
+        []
+      }
     />
   );
 }

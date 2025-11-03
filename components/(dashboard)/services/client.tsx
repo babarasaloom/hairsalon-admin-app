@@ -16,7 +16,7 @@ import { getServices } from "@/services/service";
 
 interface Props {
   initialServices: IService[];
-  categories: ICategory[];
+  categories: { id: string; name: string }[];
 }
 
 export function ServiceClientPage({ initialServices, categories }: Props) {
@@ -81,24 +81,6 @@ export function ServiceClientPage({ initialServices, categories }: Props) {
     fetchServices();
   }, []);
 
-  // Filter handler
-  /* const handleFilterChange = ({
-    text,
-    categoryId,
-  }: {
-    text: string;
-    categoryId: string | "all";
-  }) => {
-    setFilteredServices(
-      services.filter((s) => {
-        const matchesText = s.name.toLowerCase().includes(text.toLowerCase());
-        const matchesCategory =
-          categoryId === "all" || s.categoryId === categoryId;
-        return matchesText && matchesCategory;
-      })
-    );
-  }; */
-
   const handleAdd = () => {
     setEditingService(null);
     setIsModalOpen(true);
@@ -108,40 +90,6 @@ export function ServiceClientPage({ initialServices, categories }: Props) {
     setEditingService(service);
     setIsModalOpen(true);
   };
-
-  /*   const handleDeleteClick = (service: IService) => {
-    setDeleteService(service);
-  }; */
-
-  /* const confirmDelete = async () => {
-    if (!deleteService) return;
-    const res = await deleteServiceAction(
-      deleteService.id || "",
-      deleteService.imageUrl || ""
-    );
-    if (res?.success) {
-      setServices((prev) => prev.filter((s) => s.id !== deleteService.id));
-      setFilteredServices((prev) =>
-        prev.filter((s) => s.id !== deleteService.id)
-      );
-    }
-    setDeleteService(null);
-  };
-
-  const handleSave = (newService: IService) => {
-    setServices((prev) => {
-      const exists = prev.find((s) => s.id === newService.id);
-      if (exists)
-        return prev.map((s) => (s.id === newService.id ? newService : s));
-      return [newService, ...prev];
-    });
-    setFilteredServices((prev) => {
-      const exists = prev.find((s) => s.id === newService.id);
-      if (exists)
-        return prev.map((s) => (s.id === newService.id ? newService : s));
-      return [newService, ...prev];
-    });
-  }; */
 
   useEffect(() => {
     setServices(services);
@@ -167,30 +115,9 @@ export function ServiceClientPage({ initialServices, categories }: Props) {
         onDelete={handleDeleteClick}
       />
 
-      {/* Add/Edit Sheet */}
-      {/* <ServiceModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        <ServiceAddForm
-          service={editingService}
-          categories={categories}
-          onSuccess={(service) => {
-            handleSave(service);
-            setIsModalOpen(false);
-          }}
-        />
-      </ServiceModal> */}
-
-      {/* Delete Confirmation Modal */}
-      {/* {deleteService && (
-        <DeleteModal
-          title="Delete Service"
-          description={`Are you sure you want to delete ${deleteService.name}?`}
-          onCancel={() => setDeleteService(null)}
-          onConfirm={confirmDelete}
-        />
-      )} */}
-
       <ServiceModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
         <ServiceAddForm
+          categories={categories}
           service={editingService}
           onClose={() => {
             setIsModalOpen(false);

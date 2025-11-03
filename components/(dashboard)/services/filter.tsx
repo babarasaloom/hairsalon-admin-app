@@ -1,10 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { ICategory } from "@/definitions/category";
 
 interface ServiceFilterProps {
-  categories: ICategory[];
+  categories: { id: string; name: string }[];
   onFilterChange: (filter: {
     text: string;
     categoryId: string | "all";

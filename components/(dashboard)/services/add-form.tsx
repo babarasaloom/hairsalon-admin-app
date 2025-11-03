@@ -2,13 +2,7 @@
 
 import { createServiceAction } from "@/actions/service";
 import { deleteFileByNameAction, uploadFile } from "@/actions/file";
-import {
-  useActionState,
-  startTransition,
-  useRef,
-  useEffect,
-  useState,
-} from "react";
+import { useActionState, startTransition, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { serviceFormSchema } from "@/validations/service";
@@ -16,25 +10,21 @@ import { IService } from "@/definitions/service";
 import { motion } from "framer-motion";
 import InputValidated from "@/components/ui/input-validated";
 import Textarea from "@/components/ui/textarea-validated";
-import { getCategories } from "@/services/category";
-import { ICategory } from "@/definitions/category";
-
-interface CategoryOption {
-  id: string;
-  name: string;
-}
+import SelectValidated from "@/components/ui/select-validated";
+import { serviceInputFormData } from "@/constants/service";
 
 export default function ServiceAddForm({
+  categories,
   service,
   onClose,
 }: {
+  categories: { id: string; name: string }[];
   service: IService | null;
   onClose: () => void;
 }) {
   const serviceId = service?.id || "";
   const formRef = useRef<HTMLFormElement>(null);
   const initialState = { message: "", errors: {} };
-  const [categories, setCategories] = useState<CategoryOption[]>([]);
 
   const createServiceActionWithId = createServiceAction.bind(null, serviceId);
   const [state, formAction, isPending] = useActionState(
@@ -57,19 +47,6 @@ export default function ServiceAddForm({
       isActive: service?.isActive ?? true,
     },
   });
-
-  // Fetch existing categories
-  useEffect(() => {
-    async function fetchCategories() {
-      const res = await getCategories();
-      if (res?.success) {
-        setCategories(
-          res.data.map((c: ICategory) => ({ id: c.id, name: c.name }))
-        );
-      }
-    }
-    fetchCategories();
-  }, []);
 
   const onSubmit = handleSubmit(async () => {
     const formData = new FormData(formRef.current!);
@@ -113,15 +90,16 @@ export default function ServiceAddForm({
       </h2>
 
       <form ref={formRef} onSubmit={onSubmit} className="flex flex-col gap-4">
-        <InputValidated
-          name="name"
-          label="Service Name"
-          placeholder="e.g. Haircut"
-          register={register}
-          errors={errors}
-          isPending={isPending}
-          stateError={state?.errors}
-        />
+        {serviceInputFormData.map((i) => (
+          <InputValidated
+            key={i.name}
+            {...i}
+            register={register}
+            errors={errors}
+            isPending={isPending}
+            stateError={state?.errors}
+          />
+        ))}
 
         <Textarea
           label="Description"
@@ -130,53 +108,26 @@ export default function ServiceAddForm({
           errors={errors}
         />
 
-        <InputValidated
-          name="duration"
-          type="number"
-          label="Duration (minutes)"
-          placeholder="e.g. 30"
+        {/* Category dropdown */}
+        <SelectValidated
+          label="Category"
+          name="categoryId"
           register={register}
           errors={errors}
-          isPending={isPending}
+          options={categories.map((cat) => ({ _id: cat.id!, name: cat.name }))}
         />
 
-        {/* Category dropdown */}
-        <div>
-          <label className="block mb-1 font-medium text-gray-700">
-            Category
-          </label>
-          <select
-            {...register("categoryId")}
-            className="w-full rounded-md border px-3 py-2 text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-300 transition"
-            defaultValue={service?.categoryId || ""}
-          >
-            <option value="">Select a category</option>
-            {categories.map((cat) => (
-              <option key={cat.id} value={cat.id}>
-                {cat.name}
-              </option>
-            ))}
-          </select>
-          {errors.categoryId && (
-            <p className="text-red-500 text-xs mt-1">
-              {errors.categoryId.message}
-            </p>
-          )}
-        </div>
-
         {/* Status */}
-        <div>
-          <label className="block mb-1 font-medium text-gray-700">Status</label>
-          <select
-            {...register("isActive")}
-            className="w-full rounded-md border px-3 py-2 text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-300 transition"
-            defaultValue={service?.isActive ? "true" : "false"}
-          >
-            <option value="true">Active</option>
-            <option value="false">Inactive</option>
-          </select>
-        </div>
-
+        <SelectValidated
+          label="Status"
+          name="isActive"
+          register={register}
+          errors={errors}
+          options={[
+            { _id: "true", name: "Active" },
+            { _id: "false", name: "Inactive" },
+          ]}
+        />
         {/* Image */}
         <div>
           <label className="block mb-1 font-medium text-gray-700">
