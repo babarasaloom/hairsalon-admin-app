@@ -33,7 +33,10 @@ export default function InputValidated({
         type={type}
         disabled={isPending}
         placeholder={placeholder}
-        {...register(name)}
+        {...register(
+          name,
+          type === "number" ? { valueAsNumber: true } : undefined
+        )}
         className={`w-full rounded-md border px-3 py-2 text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-300 transition
           ${isPending ? "bg-gray-100" : "bg-white"}`}
       />

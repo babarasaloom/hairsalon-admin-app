@@ -23,3 +23,12 @@ export const staffInputFormData = [
     placeholder: "e.g. jane@doe.com",
   },
 ];
+
+export const addPriceInputFormData = [
+  {
+    name: "price",
+    type: "number",
+    label: "Price",
+    placeholder: "e.g. 20",
+  },
+];

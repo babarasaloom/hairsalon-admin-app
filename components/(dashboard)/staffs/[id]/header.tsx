@@ -1,19 +1,17 @@
 "use client";
 
 import { ArrowLeft, Edit, Trash, CalendarDays } from "lucide-react";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function StaffHeader({ onEdit, onSchedule }: any) {
-  const router = useRouter();
-
   return (
     <div className="flex items-center justify-between mb-2">
-      <button
-        onClick={() => router.back()}
-        className="flex items-center gap-2 text-gray-600 hover:text-gray-900"
+      <Link
+        href="/staff"
+        className="block flex items-center gap-2 text-gray-600 hover:text-gray-900"
       >
         <ArrowLeft size={18} /> Back
-      </button>
+      </Link>
 
       <div className="flex items-center gap-2">
         <button onClick={onEdit} className="p-2 rounded-lg hover:bg-gray-100">
